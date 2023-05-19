@@ -1,0 +1,28 @@
+---
+kind: pipeline
+type: kubernetes
+name: build-and-publish
+
+trigger:
+  branch:
+    - main
+
+steps:
+  - name: publish
+    image: plugins/kaniko-ecr
+    settings:
+      create_repository: true
+      registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
+      repo: devprod-platform/${DRONE_REPO_NAME}
+      tags:
+        - git-${DRONE_COMMIT_SHA:0:7}
+        - latest
+      access_key:
+        from_secret: ecr_access_key
+      secret_key:
+        from_secret: ecr_secret_key
+      build_args:
+        - GIT_SHA=${DRONE_COMMIT_SHA}
+    when:
+      event:
+        - push
