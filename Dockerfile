@@ -3,6 +3,7 @@ FROM registry.access.redhat.com/ubi9/ubi:latest as build
 
 # Grab build args from the command line
 ARG GIT_HASH
+ENV GIT_HASH=$GIT_HASH
 
 WORKDIR /build
 COPY . .
@@ -26,7 +27,7 @@ RUN export BOM_VERSION=$(bin/bom version --json | jq .gitVersion | sed 's/\"//g'
 
 RUN export BOM_VERSION=$(bin/bom version --json | jq .gitVersion | sed 's/\"//g') && \
     rpmbuild -ba \
-    --define "_git_hash ${DRONE_COMMIT_SHA}" \
+    --define "_git_hash ${GIT_HASH}" \
     --define "_topdir /build" \
     --define "_bom_version ${BOM_VERSION}" \
     rpm/evergreen-container-base.spec \
