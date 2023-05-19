@@ -29,7 +29,8 @@ steps:
         from_secret: ecr_secret_key
       build_args:
         - GIT_HASH=${DRONE_COMMIT_SHA:0:7}
-        - BUILD_DATE=${BUILD_DATE}
+        - BUILD_DATE=20230519
+        #- BUILD_DATE=${BUILD_DATE}
     when:
       event:
         - push
