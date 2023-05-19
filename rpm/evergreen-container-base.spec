@@ -34,5 +34,5 @@ install -D -m 444 /app/bom/bom-%{_bom_version}.spdx.json.gz %{buildroot}/var/lib
 /var/lib/db/sbom/bom-%{_bom_version}.spdx.json.gz
 
 %changelog
-* Wed May 19 2023 April White <april.white@mongodb.com> - 1.0-1
+* Fri May 19 2023 April White <april.white@mongodb.com> - 1.0-1
 - Include `bom` in the package so we can make other SBOMs
