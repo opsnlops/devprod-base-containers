@@ -9,7 +9,7 @@ URL:            https://github.com/10gen/%{name}
 
 BuildRoot:      %{_tmppath}/%{name}-%{_git_hash}-build
 
-BuildArch:      aarch64
+BuildArch:      amd64
 
 BuildRequires:  go
 BuildRequires:  jq
