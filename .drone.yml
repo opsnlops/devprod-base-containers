@@ -14,6 +14,8 @@ platform:
 steps:
   - name: publish
     image: plugins/kaniko-ecr
+    environment:
+      BUILD_DATE: $(date -u +'%Y%m%d')
     settings:
       create_repository: true
       registry: 795250896452.dkr.ecr.us-east-1.amazonaws.com
@@ -27,6 +29,7 @@ steps:
         from_secret: ecr_secret_key
       build_args:
         - GIT_HASH=${DRONE_COMMIT_SHA:0:7}
+        - BUILD_DATE=${BUILD_DATE}
     when:
       event:
         - push

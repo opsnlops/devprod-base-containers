@@ -5,6 +5,9 @@ FROM registry.access.redhat.com/ubi9/ubi:latest as build
 ARG GIT_HASH
 ENV GIT_HASH=$GIT_HASH
 
+ARG BUILD_DATE
+ENV BUILD_DATE=$BUILD_DATE
+
 WORKDIR /build
 COPY . .
 
@@ -30,4 +33,5 @@ RUN export BOM_VERSION=$(bin/bom version --json | jq .gitVersion | sed 's/\"//g'
     --define "_git_hash ${GIT_HASH}" \
     --define "_topdir /build" \
     --define "_bom_version ${BOM_VERSION}" \
-    rpm/evergreen-container-base.spec \
+    --define "_build_date ${BUILD_DATE}" \
+    /build/rpm/evergreen-container-base.spec \

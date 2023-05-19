@@ -1,5 +1,5 @@
 Name:           evergreen-container-base
-Version:        %{_rpm_version}
+Version:        %{_build_date}
 Release:        %{_git_hash}%{?dist}
 Summary:        Base container for Evergreen container builder
 
