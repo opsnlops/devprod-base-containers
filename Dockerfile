@@ -26,7 +26,7 @@ RUN export BOM_VERSION=$(bin/bom version --json | jq .gitVersion | sed 's/\"//g'
 
 RUN export BOM_VERSION=$(bin/bom version --json | jq .gitVersion | sed 's/\"//g') && \
     rpmbuild -ba \
-    --define "_git_hash ${GIT_HASH}" \
+    --define "_git_hash ${DRONE_COMMIT_SHA}" \
     --define "_topdir /build" \
     --define "_bom_version ${BOM_VERSION}" \
     rpm/evergreen-container-base.spec \
