@@ -7,6 +7,10 @@ trigger:
   branch:
     - main
 
+platform:
+  os: linux
+  arch: amd64
+
 steps:
   - name: publish
     image: plugins/kaniko-ecr
