@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9/ubi:latest as base-packager
+FROM registry.access.redhat.com/ubi9/ubi:latest as base
 
 
 # Grab build args from the environment
@@ -52,7 +52,7 @@ ENV BUILD_DATE=$BUILD_DATE
 WORKDIR /build
 
 # Go get the RPM we just made
-COPY --from=base-packager /build/RPMS/x86_64/evergreen-container-base-${BUILD_DATE}-${GIT_HASH}.el9.x86_64.rpm .
+COPY --from=base /build/RPMS/x86_64/evergreen-container-base-${BUILD_DATE}-${GIT_HASH}.el9.x86_64.rpm .
 
 RUN rpm -i evergreen-container-base-${BUILD_DATE}-${GIT_HASH}.el9.x86_64.rpm
 
