@@ -52,6 +52,19 @@ WORKDIR /build
 
 # Go get the RPM we just made
 COPY --from=base /build/RPMS/x86_64/evergreen-container-base-${BUILD_DATE}-${GIT_HASH}.el9.x86_64.rpm .
-
 RUN rpm -i evergreen-container-base-${BUILD_DATE}-${GIT_HASH}.el9.x86_64.rpm
+
+#
+# Install whatever is needed to build things!
+#
+
+
+
+
+#
+# Then make a tiny runtime image that copies in the build artifacts
+#
+
+#FROM registry.access.redhat.com/ubi9/ubi-micro:latest as runtime
+
 
