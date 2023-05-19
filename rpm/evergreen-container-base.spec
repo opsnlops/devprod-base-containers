@@ -30,7 +30,7 @@ install -D -m 444 /app/bom/bom-%{_bom_version}.spdx.json.gz %{buildroot}/var/lib
 
 
 %files
-%{_bindir}/bin
+%{_bindir}/bom
 /var/lib/db/sbom/bom-%{_bom_version}.spdx.json.gz
 
 %changelog
